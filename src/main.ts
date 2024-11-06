@@ -8,8 +8,8 @@ import store from './store'
 import { buildHooks } from './core'
 
 /**
- * A Rollup plugin to resolve alias paths and automatically read the alias
- * configuration from `tsconfig.json`.
+ * 🍣 A [Rollup](https://rollupjs.org/) plugin to resolve alias paths and
+ * automatically read the alias configuration from `tsconfig.json`.
  *
  * @param {Options} options Options object.
  *

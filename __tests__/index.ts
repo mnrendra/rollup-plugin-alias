@@ -2,15 +2,11 @@ import type { InputPluginOption } from 'rollup'
 
 import type { Plugin } from '@/types'
 
-import { readFileSync } from 'node:fs'
-
 import { type Package, readPackage } from '@mnrendra/read-package'
 
-import index from '..'
+import read from '@tests/utils/read'
 
-const read = (file: string): string => {
-  return readFileSync(file, { encoding: 'utf8' })
-}
+import index from '..'
 
 describe('Test all features:', () => {
   let plugin = {} as unknown as Plugin
@@ -29,55 +25,55 @@ describe('Test all features:', () => {
     expect(plugin.version).toBe(pkg.version)
   })
 
-  it('Should throw an error when the preceding plugin is an object!', () => {
+  it('Should reject within error when the preceding plugin is an object!', () => {
     const received = (): void => {
       plugin.buildStart({
         plugins: {} as unknown as InputPluginOption
       })
     }
 
-    const expected = Error(`\`rollup-plugin-esbuild\` is required and must be invoked immediately before \`${pkg.name}\`!\nMore info: ${pkg.homepage}`)
+    const expected = Error(`"rollup-plugin-esbuild" is required and must be invoked immediately before "${pkg.name}"!\nMore info: ${pkg.homepage}`)
 
     expect(received).toThrow(expected)
   })
 
-  it('Should throw an error when the preceding plugin is `undefined`!', () => {
+  it('Should reject within error when the preceding plugin is `undefined`!', () => {
     const received = (): void => {
       plugin.buildStart({
         plugins: [] as unknown as InputPluginOption
       })
     }
 
-    const expected = Error(`\`rollup-plugin-esbuild\` is required and must be invoked immediately before \`${pkg.name}\`!\nMore info: ${pkg.homepage}`)
+    const expected = Error(`"rollup-plugin-esbuild" is required and must be invoked immediately before "${pkg.name}"!\nMore info: ${pkg.homepage}`)
 
     expect(received).toThrow(expected)
   })
 
-  it('Should throw an error when the preceding plugin name is not "esbuild"!', () => {
+  it('Should reject within error when the preceding plugin name is not "esbuild"!', () => {
     const received = (): void => {
       plugin.buildStart({
         plugins: [{ name: '' }] as unknown as InputPluginOption
       })
     }
 
-    const expected = Error(`\`rollup-plugin-esbuild\` is required and must be invoked immediately before \`${pkg.name}\`!\nMore info: ${pkg.homepage}`)
+    const expected = Error(`"rollup-plugin-esbuild" is required and must be invoked immediately before "${pkg.name}"!\nMore info: ${pkg.homepage}`)
 
     expect(received).toThrow(expected)
   })
 
-  it('Should throw an error when the preceding plugin is `null`!', () => {
+  it('Should reject within error when the preceding plugin is `null`!', () => {
     const received = (): void => {
       plugin.buildStart({
         plugins: [null] as unknown as InputPluginOption
       })
     }
 
-    const expected = Error(`\`rollup-plugin-esbuild\` is required and must be invoked immediately before \`${pkg.name}\`!\nMore info: ${pkg.homepage}`)
+    const expected = Error(`"rollup-plugin-esbuild" is required and must be invoked immediately before "${pkg.name}"!\nMore info: ${pkg.homepage}`)
 
     expect(received).toThrow(expected)
   })
 
-  it('Should return a code as "./tests/dummies/1.expected.js" when given "./tests/dummies/1.resource.js" and `plugin.format` set to "cjs"!', async () => {
+  it('Should resolve a code as "./tests/dummies/1.expected.js" when given "./tests/dummies/1.resource.js" and `plugin.format` set to "cjs"!', async () => {
     const code = read('./tests/dummies/1.resource.js')
     const path = './tests/dummies/1.resource.js'
 
@@ -87,7 +83,7 @@ describe('Test all features:', () => {
     expect(received.code).toBe(expected)
   })
 
-  it('Should return a code as "./tests/dummies/2.expected.js" when given "./tests/dummies/2.resource.js" and `plugin.format` set to "cjs"!', async () => {
+  it('Should resolve a code as "./tests/dummies/2.expected.js" when given "./tests/dummies/2.resource.js" and `plugin.format` set to "cjs"!', async () => {
     const code = read('./tests/dummies/2.resource.js')
     const path = './tests/dummies/2.resource.js'
 
@@ -111,7 +107,7 @@ describe('Test all features:', () => {
       })
     })
 
-    it('Should return a code as "./tests/dummies/11.expected.js" when given "./tests/dummies/11.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/11.expected.js" when given "./tests/dummies/11.resource.js"!', async () => {
       const code = read('./tests/dummies/11.resource.js')
       const path = './src/index.mjs'
 
@@ -121,7 +117,7 @@ describe('Test all features:', () => {
       expect(received.code).toBe(expected)
     })
 
-    it('Should return a code as "./tests/dummies/12.expected.js" when given "./tests/dummies/12.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/12.expected.js" when given "./tests/dummies/12.resource.js"!', async () => {
       const code = read('./tests/dummies/12.resource.js')
       const path = './src/main/index.mjs'
 
@@ -131,7 +127,7 @@ describe('Test all features:', () => {
       expect(received.code).toBe(expected)
     })
 
-    it('Should return a code as "./tests/dummies/13.expected.js" when given "./tests/dummies/13.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/13.expected.js" when given "./tests/dummies/13.resource.js"!', async () => {
       const code = read('./tests/dummies/13.resource.js')
       const path = './src/index.mjs'
 
@@ -141,7 +137,7 @@ describe('Test all features:', () => {
       expect(received.code).toBe(expected)
     })
 
-    it('Should return a code as "./tests/dummies/14.expected.js" when given "./tests/dummies/14.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/14.expected.js" when given "./tests/dummies/14.resource.js"!', async () => {
       const code = read('./tests/dummies/14.resource.js')
       const path = './src/main/index.mjs'
 
@@ -151,7 +147,7 @@ describe('Test all features:', () => {
       expect(received.code).toBe(expected)
     })
 
-    it('Should throw an "Unexpected token" error when given "./tests/dummies/5.resource.ts"!', () => {
+    it('Should reject within "Unexpected token" error when given "./tests/dummies/5.resource.ts"!', () => {
       const code = read('./tests/dummies/15.resource.ts')
       const path = ''
 
