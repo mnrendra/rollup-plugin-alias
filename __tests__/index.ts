@@ -73,7 +73,7 @@ describe('Test all features:', () => {
     expect(received).toThrow(expected)
   })
 
-  it('Should return a code as "./tests/dummies/1.expected.js" when given "./tests/dummies/1.resource.js" and `plugin.format` set to "cjs"!', async () => {
+  it('Should resolve a code as "./tests/dummies/1.expected.js" when given "./tests/dummies/1.resource.js" and `plugin.format` set to "cjs"!', async () => {
     const code = read('./tests/dummies/1.resource.js')
     const path = './tests/dummies/1.resource.js'
 
@@ -83,7 +83,7 @@ describe('Test all features:', () => {
     expect(received.code).toBe(expected)
   })
 
-  it('Should return a code as "./tests/dummies/2.expected.js" when given "./tests/dummies/2.resource.js" and `plugin.format` set to "cjs"!', async () => {
+  it('Should resolve a code as "./tests/dummies/2.expected.js" when given "./tests/dummies/2.resource.js" and `plugin.format` set to "cjs"!', async () => {
     const code = read('./tests/dummies/2.resource.js')
     const path = './tests/dummies/2.resource.js'
 
@@ -107,7 +107,7 @@ describe('Test all features:', () => {
       })
     })
 
-    it('Should return a code as "./tests/dummies/11.expected.js" when given "./tests/dummies/11.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/11.expected.js" when given "./tests/dummies/11.resource.js"!', async () => {
       const code = read('./tests/dummies/11.resource.js')
       const path = './src/index.mjs'
 
@@ -117,7 +117,7 @@ describe('Test all features:', () => {
       expect(received.code).toBe(expected)
     })
 
-    it('Should return a code as "./tests/dummies/12.expected.js" when given "./tests/dummies/12.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/12.expected.js" when given "./tests/dummies/12.resource.js"!', async () => {
       const code = read('./tests/dummies/12.resource.js')
       const path = './src/main/index.mjs'
 
@@ -127,7 +127,7 @@ describe('Test all features:', () => {
       expect(received.code).toBe(expected)
     })
 
-    it('Should return a code as "./tests/dummies/13.expected.js" when given "./tests/dummies/13.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/13.expected.js" when given "./tests/dummies/13.resource.js"!', async () => {
       const code = read('./tests/dummies/13.resource.js')
       const path = './src/index.mjs'
 
@@ -137,7 +137,7 @@ describe('Test all features:', () => {
       expect(received.code).toBe(expected)
     })
 
-    it('Should return a code as "./tests/dummies/14.expected.js" when given "./tests/dummies/14.resource.js"!', async () => {
+    it('Should resolve a code as "./tests/dummies/14.expected.js" when given "./tests/dummies/14.resource.js"!', async () => {
       const code = read('./tests/dummies/14.resource.js')
       const path = './src/main/index.mjs'
 
