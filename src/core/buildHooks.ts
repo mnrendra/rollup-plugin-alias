@@ -9,7 +9,7 @@ import store from '../store'
  *
  * *Part of Rollup's Build Hooks.*
  *
- * @param {InputOptions} options - Rollup `InputOptions`.
+ * @param {InputOptions} options Rollup `InputOptions`.
  *
  * @see https://rollupjs.org/plugin-development/#buildstart
  */
@@ -22,8 +22,8 @@ export const buildStart = ({
     homepage
   }: typeof store): Error => {
     return new Error(
-      '`rollup-plugin-esbuild` is required and must be invoked immediately ' +
-      `before \`${name}\`!\nMore info: ${homepage}`
+      '"rollup-plugin-esbuild" is required and must be invoked immediately ' +
+      `before "${name}"!\nMore info: ${homepage}`
     )
   }
 
@@ -55,8 +55,8 @@ export const buildStart = ({
  *
  * *Part of Rollup's Build Hooks.*
  *
- * @param {string} code - Rollup `transform` code.
- * @param {string} id - Rollup `transform` id.
+ * @param {string} code Rollup `transform` code.
+ * @param {string} id Rollup `transform` id.
  *
  * @returns {Partial<SourceDescription>} Rollup `transform` result.
  *

@@ -3,8 +3,8 @@ import main from './main'
 export type {
   Alias,
   Aliases,
-  Plugin,
-  Options
+  Options,
+  Plugin
 } from './types'
 
 export default main
