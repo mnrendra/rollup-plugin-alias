@@ -61,7 +61,7 @@ module.exports = {
 
 ### • `aliases`
 *type: `Alias[]`*<br/>
-A list of alias configs.
+A list of [alias](https://github.com/mnrendra/types-aliases) configs.
 
 ## Types
 ```typescript
