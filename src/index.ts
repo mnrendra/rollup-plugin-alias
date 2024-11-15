@@ -6,6 +6,12 @@ export type {
 } from '@mnrendra/alias-resolver'
 
 export type {
+  CompilerOptions,
+  BaseURL,
+  Paths
+} from '@mnrendra/tsconfig-alias-parser'
+
+export type {
   Options,
   Plugin
 } from './types'

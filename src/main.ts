@@ -17,13 +17,14 @@ import { buildHooks } from './core'
  * @see https://www.npmjs.com/package/@mnrendra/rollup-plugin-alias
  */
 const main = async ({
-  aliases = []
+  aliases = [],
+  compilerOptions = undefined
 }: Options = {}): Promise<Plugin> => {
   // Initialize store.
   await initStore(store)
 
   // Parse aliases from `tsconfig.json`.
-  const tsConfigAliases = await parseTSConfigAlias()
+  const tsConfigAliases = await parseTSConfigAlias(compilerOptions)
 
   // Store options.
   store.aliases = Array.isArray(aliases) && aliases.length > 0
