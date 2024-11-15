@@ -2,7 +2,10 @@ import main from './main'
 
 export type {
   Alias,
-  Aliases,
+  Aliases
+} from '@mnrendra/alias-resolver'
+
+export type {
   Options,
   Plugin
 } from './types'
