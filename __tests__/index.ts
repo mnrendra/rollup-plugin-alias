@@ -158,4 +158,81 @@ describe('Test all features:', () => {
       expect(received).toThrow(Error('Your source code contains an \'Unexpected token\' error or might be in `TypeScript` format, so it cannot be parsed. This module can only parse CommonJS or ESModule formats.'))
     })
   })
+
+  describe('By passing `compilerOptions` option:', () => {
+    let plugin = {} as unknown as Plugin
+
+    beforeEach(async () => {
+      plugin = await index({
+        compilerOptions: {
+          baseUrl: './src',
+          paths: {
+            // @
+            '@': ['./'],
+            '@/*': ['./*'],
+            // @consts
+            '@consts': ['./consts'],
+            '@/consts/*': ['./consts/*'],
+            // @utils
+            '@utils': ['./utils'],
+            '@/utils/*': ['./utils/*'],
+            // @tests
+            '@tests': ['../tests'],
+            '@tests/*': ['../tests/*']
+          }
+        }
+      })
+    })
+
+    it('Should resolve a code as "./tests/dummies/11.expected.js" when given "./tests/dummies/11.resource.js"!', async () => {
+      const code = read('./tests/dummies/11.resource.js')
+      const path = './src/index.mjs'
+
+      const received = plugin.transform(code, path)
+      const expected = read('./tests/dummies/11.expected.js')
+
+      expect(received.code).toBe(expected)
+    })
+
+    it('Should resolve a code as "./tests/dummies/12.expected.js" when given "./tests/dummies/12.resource.js"!', async () => {
+      const code = read('./tests/dummies/12.resource.js')
+      const path = './src/main/index.mjs'
+
+      const received = plugin.transform(code, path)
+      const expected = read('./tests/dummies/12.expected.js')
+
+      expect(received.code).toBe(expected)
+    })
+
+    it('Should resolve a code as "./tests/dummies/13.expected.js" when given "./tests/dummies/13.resource.js"!', async () => {
+      const code = read('./tests/dummies/13.resource.js')
+      const path = './src/index.mjs'
+
+      const received = plugin.transform(code, path)
+      const expected = read('./tests/dummies/13.expected.js')
+
+      expect(received.code).toBe(expected)
+    })
+
+    it('Should resolve a code as "./tests/dummies/14.expected.js" when given "./tests/dummies/14.resource.js"!', async () => {
+      const code = read('./tests/dummies/14.resource.js')
+      const path = './src/main/index.mjs'
+
+      const received = plugin.transform(code, path)
+      const expected = read('./tests/dummies/14.expected.js')
+
+      expect(received.code).toBe(expected)
+    })
+
+    it('Should reject within "Unexpected token" error when given "./tests/dummies/5.resource.ts"!', () => {
+      const code = read('./tests/dummies/15.resource.ts')
+      const path = ''
+
+      const received = (): void => {
+        plugin.transform(code, path)
+      }
+
+      expect(received).toThrow(Error('Your source code contains an \'Unexpected token\' error or might be in `TypeScript` format, so it cannot be parsed. This module can only parse CommonJS or ESModule formats.'))
+    })
+  })
 })

@@ -53,22 +53,45 @@ const alias = require('@mnrendra/rollup-plugin-alias')
 module.exports = {
   plugins: [
     alias({
-      aliases: [{ alias: '@', path: './src' }] // To override alias path configurations from `tsconfig.json`.
+      // List of alias configs to override alias path configurations from `tsconfig.json` or `compilerOptions` option.
+      aliases: [{
+        alias: '@',
+        path: './src'
+      }],
+      // `tsconfig.json`'s `compilerOptions` contains `baseUrl` and `paths` properties to override alias path configurations from `tsconfig.json`.
+      // Note: it will be overridden by the `aliases` option if it exists.
+      compilerOptions: {
+        baseUrl: './src',
+        paths: {
+          '@': ['./'],
+          '@/*': ['./*']
+        }
+      }
     })
   ]
 }
 ```
 
 ### • `aliases`
-*type: `Alias[]`*<br/>
-A list of alias configs.
+*type: `Alias[]|undefined`*<br/>
+*default: `[]`*<br/>
+List of [alias](https://github.com/mnrendra/types-aliases#readme) configs to override alias path configurations from `tsconfig.json` or `compilerOptions` option.
+### • `compilerOptions`
+*type: `CompilerOptions|undefined`*<br/>
+*default: `undefined`*<br/>
+`tsconfig.json`'s [compilerOptions](https://github.com/mnrendra/types-tsconfig#readme) contains `baseUrl` and `paths` properties to override alias path configurations from `tsconfig.json`.<br>
+*Note: it will be overridden by the `aliases` option if it exists.*
 
 ## Types
 ```typescript
 import type {
-  // @mnrendra/alias-resolver
+  // @mnrendra/types-aliases
   Alias,
   Aliases,
+  // @mnrendra/types-tsconfig
+  CompilerOptions,
+  BaseURL,
+  Paths,
   // @mnrendra/rollup-plugin-alias
   Options,
   Plugin
