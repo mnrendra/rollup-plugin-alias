@@ -32,7 +32,7 @@ const main = async ({
     : tsConfigAliases
 
   // Print info.
-  await printInfo(store)
+  printInfo(store)
 
   // Return Rollup plugin object.
   return {
