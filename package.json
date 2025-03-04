@@ -1,6 +1,6 @@
 {
   "name": "@mnrendra/rollup-plugin-alias",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Rollup plugin to resolve alias paths and automatically read the alias configuration from tsconfig.json.",
   "private": false,
   "main": "dist/index.js",
